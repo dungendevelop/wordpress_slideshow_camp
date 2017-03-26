@@ -2,10 +2,18 @@ jQuery(document).ready(function($) {
 
 
   $('.add_image').click(function(){
-    var cloned =  $('.listingimagediv:first').clone();
+    var cloned =  $('.tobecloned:first').clone();
     cloned.addClass('cloned');
     $('#camp_slider_images_box').append(cloned);
   });
+
+  $( "#camp_slider_images_box" ).sortable({
+    handle: '.handle' , 
+    axis: 'y',
+    containment: '#camp_slider_images_box'
+  });
+
+
   // Uploading files
   var file_frame;
 
@@ -52,5 +60,11 @@ jQuery(document).ready(function($) {
       $( this ).removeClass(  'remove_listing_image_button' );
       $( this ).addClass(  'upload_listing_image_button' );
       $this.parent().parent().find( '.upload_listing_image_button' ).text( 'Set listing image' );
+  });
+
+  //remove slide
+  $('#camp_slider_images_box').on( 'click', '.remove_slide', function( event ) {
+      var $this = $(this);
+      $this.parent().remove();
   });
 });

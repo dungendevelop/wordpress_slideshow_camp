@@ -1,0 +1,26 @@
+.listingimagediv{display: none;}
+
+.listingimagediv.cloned{display: block;position: relative;}
+
+.listingimagediv.cloned {
+    margin: 15px 0 15px 0;
+    border: 1px solid rgba(162, 162, 162, 0.29);
+    border-radius: 5px;
+    padding: 15px 0 15px 15px;
+}
+span.handle {
+    margin: 15px 15px 0 0;
+    float:left;
+    cursor:move;
+    font-size: 2em;
+}
+span.remove_slide.dashicons.dashicons-no {
+    color: red;
+    position: absolute;
+    top:2px;
+    right: 2px;
+    cursor:pointer;
+    display: inline-block;
+}
+li.listingimagediv.cloned img {display:inline-block;clear:none;float:left;margin-right:15px;object-fit:cover;width:50px;height:50px;}
+
