@@ -39,20 +39,7 @@ if(!class_exists('Wp_Slideshow_Class'))
                 if(!empty($image_ids) && count($image_ids)){
                     wp_enqueue_script( 'wp_slide_js', plugins_url( '../assets/js/lib/slick.min.js' , __FILE__ ) );
                     wp_enqueue_style( 'wp_slide_js', plugins_url( '../assets/css/lib/slick-theme.css' , __FILE__ ) );
-                    echo '<script>jQuery(document).ready(function(){
-                        jQuery(".campslider").each(function(){
-                            var $this = jQuery(this);
-                            $this.slick({
-                              dots: true,
-                              infinite: true,
-                              arrows:true,
-                              speed: 300,
-                              autoplay:200,
-                              slidesToShow: 1,
-                              adaptiveHeight: true
-                            });
-                        });
-                    });</script>';
+                    wp_enqueue_script( 'wp-s-camp-js-front', plugins_url( '../assets/js/wp_slide_front.js' , __FILE__ ));
                     $content .= '<ul class="campslider" '.(!empty($atts['dots'])?'data-dots="1"':'').' '.(!empty($atts['arrows'])?'data-arrows="1"':'').' '.(!empty($atts['sliderheight'])?'data-sliderheight="'.$atts['sliderheight'].'"':'').' '.(!empty($atts['autoplay'])?'data-autoplay="1"':'').' '.(!empty($atts['autoplay_interval'])?'data-autoplay_interval="'.$atts['autoplay_interval'].'"':'').' '.(!empty($atts['speed'])?'data-speed="'.$atts['speed'].'"':'').'>';
                     foreach($image_ids as $image){
                         $url = wp_get_attachment_url($image);
