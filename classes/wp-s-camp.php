@@ -18,6 +18,17 @@ if(!class_exists('Wp_Slideshow_Class'))
             add_action( 'add_meta_boxes',array($this, 'wp_slide_register_meta_boxes' ));
             add_action( 'save_post', array($this,'wp_slide_save_meta_box' ));
             add_shortcode('campslider',array($this,'render_campslider'));
+            add_action( 'admin_enqueue_scripts', array($this,'wp_slide_scripts_styles'), 10, 1 );
+
+        }
+
+        function wp_slide_scripts_styles( $hook ) {
+            if ( in_array( $hook, array( 'post-new.php', 'post.php' ) ) ){
+                if( (isset($_GET['post_type']) && ($_GET['post_type'] == 'campslider')) || (isset($_GET['post']) && (get_post_type($_GET['post']) == 'campslider'))){
+                    wp_enqueue_script( 'wp_slide_js', plugins_url( '../assets/js/wp_slide.js' , __FILE__ ) );
+                    wp_enqueue_style( 'wp_slide_css', plugins_url( '../assets/css/wp_slide.css' , __FILE__ ) );
+                }
+            }
         }
 
         function render_campslider($atts,$content=null){
@@ -55,14 +66,15 @@ if(!class_exists('Wp_Slideshow_Class'))
             register_post_type( 'campslider',
                 array(
                     'labels' => array(
-                        'name' => __('Slider','wp-slide-camp'),
-                        'menu_name' => __('Slider','wp-slide-camp'),
-                        'singular_name' => __('Slider','wp-slide-camp'),
-                        'add_new_item' => __('Add New Slider','wp-slide-camp'),
-                        'all_items' => __('Sliders','wp-slide-camp')
+                        'name' => __('Camp Slider','wp-slide-camp'),
+                        'menu_name' => __('Camp Slider','wp-slide-camp'),
+                        'singular_name' => __('Camp Slider','wp-slide-camp'),
+                        'add_new_item' => __('Add New Camp Slider','wp-slide-camp'),
+                        'all_items' => __('Camp Sliders','wp-slide-camp')
                     ),
                     'publicly_queryable' => true,
                     'show_ui' => true,
+                    'menu_icon' => 'dashicons-images-alt',
                     'exclude_from_search' => true,
                     'has_archive' => false,
                     'query_var'   => false,
@@ -82,9 +94,9 @@ if(!class_exists('Wp_Slideshow_Class'))
          
      
         function wp_slide_my_display_callback( $post ) {
+            //handle the hook to include script on just this page 
             // Display code/markup goes here. Don't forget to include nonces!
-            wp_enqueue_script( 'wp_slide_js', plugins_url( '../assets/js/wp_slide.js' , __FILE__ ) );
-            wp_enqueue_style( 'wp_slide_css', plugins_url( '../assets/css/wp_slide.css' , __FILE__ ) );
+           
             wp_nonce_field( 'campslider_security', 'campslider_security' );
             echo '<div id="camp_slider_images_box"><a class="button button-primary add_image">Add image</a>';
             echo '<li class="listingimagediv tobecloned"><span class="handle dashicons dashicons-menu"></span>';

@@ -12,7 +12,8 @@ jQuery(document).ready(function(){
         adaptiveHeight: true
       };
       args.dots = ($this.data('dots')?true:false); 
-      args.autoplay=($this.data('autoplay')?'true':'false');
+      args.autoplay=($this.data('autoplay')?true:false);
+      args.arrows = ($this.data('arrows')?true:false);
       args.autoplaySpeed = ($this.data('autoplay_interval')?$this.data('autoplay_interval'):0);
       $this.slick(args);
   });

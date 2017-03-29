@@ -62,7 +62,6 @@
 {
     opacity: .25;
 }
-
 .slick-prev:before,
 .slick-next:before
 {
@@ -201,4 +200,7 @@
 {
     opacity: .75;
     color: black;
+}
+.slick-prev:before, .slick-next:before{
+    color:rgba(0, 0, 0, 0.5);
 }

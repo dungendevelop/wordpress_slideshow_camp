@@ -40,18 +40,6 @@ if(class_exists('Wp_Slideshow_Class'))
     $wpsc = Wp_Slideshow_Class::init();
 }
 
-function wp_s_camp_enqueue_styles(){
-    //wp_enqueue_style( 'wp-s-camp-css', plugins_url( 'assets/css/wp_slide_front.css' , __FILE__ ));
-    
-}
-
-add_action('wp_head','wp_s_camp_enqueue_styles');
-
-add_action('wp_enqueue_scripts','wp_s_camp_custom_js');
-function wp_s_camp_custom_js(){
-	//wp_enqueue_script( 'wp-s-camp-js', plugins_url( 'assets/js/wp_slide_front.js' , __FILE__ ));
-}
-
 add_action( 'plugins_loaded', 'wp_s_camp_language_setup' );
 function wp_s_camp_language_setup(){
     $locale = apply_filters("plugin_locale", get_locale(), 'bmbp');
